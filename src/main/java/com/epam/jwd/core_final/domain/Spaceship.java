@@ -13,7 +13,7 @@ public class Spaceship extends AbstractBaseEntity {
     private Long flightDistance;
     private Boolean isReadyForNextMissions;
 
-    public Spaceship(String name, Map<Role, Short> crew, Long flightDistance) {
+    public Spaceship(String name, Long flightDistance, Map<Role, Short> crew) {
         super(name);
         this.crew = crew;
         this.flightDistance = flightDistance;
