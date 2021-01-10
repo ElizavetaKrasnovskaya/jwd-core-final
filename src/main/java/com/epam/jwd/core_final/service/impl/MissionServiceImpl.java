@@ -93,10 +93,10 @@ public class MissionServiceImpl implements MissionService{
 
     @Override
     public void missionStatusUpdate(FlightMission mission) {
-        if (mission.getStartDate().isBefore(LocalDate.now()) && mission.getMissionResult() == MissionResult.PLANNED) {
+        if (mission.getStartDate().isBefore(LocalDateTime.now()) && mission.getMissionResult() == MissionResult.PLANNED) {
             mission.setMissionResult(MissionResult.IN_PROGRESS);
         }
-        if (mission.getEndDate().isBefore(LocalDate.now()) && mission.getMissionResult() == MissionResult.IN_PROGRESS) {
+        if (mission.getEndDate().isBefore(LocalDateTime.now()) && mission.getMissionResult() == MissionResult.IN_PROGRESS) {
             finishMission(mission);
         }
     }
@@ -112,7 +112,7 @@ public class MissionServiceImpl implements MissionService{
     }
 
     @Override
-    public FlightMission createTemporaryMission(LocalDate startDate, LocalDate endDate, Long distance) {
+    public FlightMission createTemporaryMission(LocalDateTime startDate, LocalDateTime endDate, Long distance) {
         return new FlightMission("", startDate, endDate, distance);
     }
 

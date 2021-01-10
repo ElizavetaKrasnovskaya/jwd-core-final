@@ -97,7 +97,7 @@ public interface ApplicationMenu {
                     logger.info("App was closed");
                     System.out.println("Closing app");
                     return;
-                case 1: //create mission
+                case 1:
                     System.out.println("Enter mission name:");
                     scanner.nextLine();
                     String name = null;
@@ -336,19 +336,19 @@ public interface ApplicationMenu {
 
                 System.out.println("Enter start date in format " + applicationProperties.getDateTimeFormat());
                 scanner.nextLine();
-                LocalDate updatedStartDate = null;
+                LocalDateTime updatedStartDate = null;
                 while (updatedStartDate == null) {
                     try {
-                        updatedStartDate = LocalDate.parse(scanner.nextLine(), dateTimeFormatter);
+                        updatedStartDate = LocalDateTime.parse(scanner.nextLine(), dateTimeFormatter);
                     } catch (DateTimeParseException e) {
                         System.out.println("You entered wrong data. Try again");
                     }
                 }
                 System.out.println("Enter finish date in format " + applicationProperties.getDateTimeFormat());
-                LocalDate updatedEndDate = null;
+                LocalDateTime updatedEndDate = null;
                 while (updatedEndDate == null) {
                     try {
-                        updatedEndDate = LocalDate.parse(scanner.nextLine(), dateTimeFormatter);
+                        updatedEndDate = LocalDateTime.parse(scanner.nextLine(), dateTimeFormatter);
                         if (!updatedStartDate.isBefore(updatedEndDate)) {
                             updatedEndDate = null;
                             throw new EndDateIsBeforeStartDateException("Finish time has to be after beginning.");

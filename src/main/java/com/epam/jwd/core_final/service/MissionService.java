@@ -29,7 +29,7 @@ public interface MissionService {
 
     void printAllMissions();
 
-    FlightMission createTemporaryMission(LocalDate startDate, LocalDate endDate, Long distance);
+    FlightMission createTemporaryMission(LocalDateTime startDate, LocalDateTime endDate, Long distance);
 
     List<FlightMission> getMissionsWithCrewMember(CrewMember crewMember);
 }
