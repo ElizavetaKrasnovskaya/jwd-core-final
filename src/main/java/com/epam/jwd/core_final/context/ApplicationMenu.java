@@ -27,7 +27,6 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -373,7 +372,7 @@ public interface ApplicationMenu {
 
                 System.out.println("Choose spaceship for mission");
                 AtomicInteger index = new AtomicInteger();
-                availableSpaceships.stream().map(spaceship -> (index.incrementAndGet()) +". " + spaceship.toString()).forEach(System.out::println);
+                availableSpaceships.stream().map(spaceship -> (index.incrementAndGet()) + ". " + spaceship.toString()).forEach(System.out::println);
                 int spaceshipToAssignIndex = scanner.nextInt() - 1;
 
                 SpaceshipServiceImpl.getInstance().assignSpaceshipOnMission(missionToUpdate, availableSpaceships.get(spaceshipToAssignIndex));

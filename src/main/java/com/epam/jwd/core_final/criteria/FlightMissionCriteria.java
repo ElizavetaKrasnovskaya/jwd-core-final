@@ -5,7 +5,6 @@ import com.epam.jwd.core_final.domain.FlightMission;
 import com.epam.jwd.core_final.domain.MissionResult;
 import com.epam.jwd.core_final.domain.Spaceship;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

@@ -29,21 +29,22 @@ public class NassaContext implements ApplicationContext {
     private String crewPath;
     private String spaceshipPath;
 
-    private NassaContext(){}
+    private NassaContext() {
+    }
 
-    public static NassaContext getInstance(){
+    public static NassaContext getInstance() {
         return INSTANCE;
     }
 
     @Override
     public <T extends BaseEntity> Collection<T> retrieveBaseEntityList(Class<T> tClass) {
-        if(tClass.toString().equals(CrewMember.class.toString())){
+        if (tClass.toString().equals(CrewMember.class.toString())) {
             return (Collection<T>) crewMembers;
         }
-        if(tClass.toString().equals(Spaceship.class.toString())){
+        if (tClass.toString().equals(Spaceship.class.toString())) {
             return (Collection<T>) spaceships;
         }
-        if(tClass.toString().equals(FlightMission.class.toString())){
+        if (tClass.toString().equals(FlightMission.class.toString())) {
             return (Collection<T>) missions;
         }
         throw new UnknownEntityException("Unknown base entity (only CrewMember, FlightMission or Spaceship collections)");
@@ -51,6 +52,7 @@ public class NassaContext implements ApplicationContext {
 
     /**
      * You have to read input files, populate collections
+     *
      * @throws InvalidStateException
      */
 
@@ -58,11 +60,11 @@ public class NassaContext implements ApplicationContext {
         return applicationProperties;
     }
 
-    public String getCrewPath(){
+    public String getCrewPath() {
         return crewPath;
     }
 
-    public String getSpaceshipPath(){
+    public String getSpaceshipPath() {
         return spaceshipPath;
     }
 
@@ -73,10 +75,10 @@ public class NassaContext implements ApplicationContext {
                 + applicationProperties.getInputRootDir() + separator + applicationProperties.getCrewFileName();
         spaceshipPath = "src" + separator + "main" + separator + "resources" + separator
                 + applicationProperties.getInputRootDir() + separator + applicationProperties.getSpaceshipsFileName();
-        try{
+        try {
             new CrewFile(crewPath).read();
             new SpaceshipFile(spaceshipPath).read();
-        }catch (IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
             throw new InvalidStateException();
         }

@@ -17,7 +17,8 @@ public class MultilineFileStrategy implements FileStrategy {
 
     private final static MultilineFileStrategy INSTANCE = new MultilineFileStrategy();
 
-    private MultilineFileStrategy(){}
+    private MultilineFileStrategy() {
+    }
 
     public static MultilineFileStrategy getINSTANCE() {
         return INSTANCE;

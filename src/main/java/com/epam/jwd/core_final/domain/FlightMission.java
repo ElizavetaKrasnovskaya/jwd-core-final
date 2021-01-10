@@ -1,7 +1,9 @@
 package com.epam.jwd.core_final.domain;
 
-import java.time.LocalDate;
+import com.epam.jwd.core_final.service.impl.MissionServiceImpl;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,14 +23,15 @@ public class FlightMission extends AbstractBaseEntity {
     private LocalDateTime endDate;
     private Long distance;
     private Spaceship assignedSpaceship;
-    private List<CrewMember> assignedCrew;
+    private List<CrewMember> assignedCrew = new ArrayList<>();
     private MissionResult missionResult;
 
-    public FlightMission(String missionName, LocalDateTime startDate, LocalDateTime endDate, long distance) {
+    public FlightMission(String missionName, LocalDateTime startDate, LocalDateTime endDate, Long distance) {
         super(missionName);
         this.startDate = startDate;
         this.endDate = endDate;
         this.distance = distance;
+        this.missionResult = MissionResult.PLANNED;
     }
 
     public LocalDateTime getStartDate() {
@@ -47,11 +50,11 @@ public class FlightMission extends AbstractBaseEntity {
         this.endDate = endDate;
     }
 
-    public long getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
-    public void setDistance(long distance) {
+    public void setDistance(Long distance) {
         this.distance = distance;
     }
 
@@ -71,6 +74,10 @@ public class FlightMission extends AbstractBaseEntity {
         this.assignedCrew = assignedCrew;
     }
 
+    public void addCrew(CrewMember crewMember) {
+        assignedCrew.add(crewMember);
+    }
+
     public MissionResult getMissionResult() {
         return missionResult;
     }
@@ -79,18 +86,17 @@ public class FlightMission extends AbstractBaseEntity {
         this.missionResult = missionResult;
     }
 
-    public void addCrew(CrewMember crewMember) {
-        assignedCrew.add(crewMember);
-    }
-
     @Override
     public String toString() {
-        return "FlightMission " +
-                "startDate = " + startDate +
-                ", endDate = " + endDate +
-                ", distance = " + distance +
-                ", assignedSpaceship = " + assignedSpaceship +
-                ", assignedCrew = " + assignedCrew +
-                ", missionResult = " + missionResult;
+        return "FlightMission{" +
+                "name=" + getName() +
+                ", id=" + getId() +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", distance=" + distance +
+                ", assignedSpaceship=" + assignedSpaceship +
+                ", progress=" + MissionServiceImpl.getInstance().calculateMissionProgress(this) +
+                ", missionResult=" + missionResult +
+                '}';
     }
 }

@@ -10,7 +10,6 @@ import com.epam.jwd.core_final.factory.impl.FlightMissionFactory;
 import com.epam.jwd.core_final.service.MissionService;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -19,11 +18,12 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public class MissionServiceImpl implements MissionService{
+public class MissionServiceImpl implements MissionService {
 
     private final static MissionServiceImpl INSTANCE = new MissionServiceImpl();
 
-    private MissionServiceImpl() {}
+    private MissionServiceImpl() {
+    }
 
     public static MissionServiceImpl getInstance() {
         return INSTANCE;

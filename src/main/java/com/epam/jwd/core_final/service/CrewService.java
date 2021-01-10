@@ -6,7 +6,6 @@ import com.epam.jwd.core_final.domain.FlightMission;
 import com.epam.jwd.core_final.domain.Rank;
 import com.epam.jwd.core_final.domain.Role;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 

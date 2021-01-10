@@ -34,7 +34,7 @@ public enum Rank implements BaseEntity {
      */
     public static Rank resolveRankById(long id) {
         for (Rank rank : values()) {
-            if (rank.id.equals(id)){
+            if (rank.id.equals(id)) {
                 return rank;
             }
         }

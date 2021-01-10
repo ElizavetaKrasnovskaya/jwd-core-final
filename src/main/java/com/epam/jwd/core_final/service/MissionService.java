@@ -4,7 +4,6 @@ import com.epam.jwd.core_final.criteria.Criteria;
 import com.epam.jwd.core_final.domain.CrewMember;
 import com.epam.jwd.core_final.domain.FlightMission;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +22,7 @@ public interface MissionService {
 
     Double calculateMissionProgress(FlightMission flightMission);
 
-    void missionStatusUpdate (FlightMission mission);
+    void missionStatusUpdate(FlightMission mission);
 
     void finishMission(FlightMission mission);
 

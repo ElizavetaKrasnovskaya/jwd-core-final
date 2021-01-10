@@ -18,14 +18,15 @@ public class InlineFileStrategy implements FileStrategy {
 
     private final static InlineFileStrategy INSTANCE = new InlineFileStrategy();
 
-    private InlineFileStrategy(){}
+    private InlineFileStrategy() {
+    }
 
     public static InlineFileStrategy getINSTANCE() {
         return INSTANCE;
     }
 
     @Override
-    public void read(String path) throws IOException {
+    public void read(String path){
 
         File file = new File(path);
         try {

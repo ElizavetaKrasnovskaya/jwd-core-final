@@ -3,7 +3,6 @@ package com.epam.jwd.core_final.util;
 import com.epam.jwd.core_final.domain.ApplicationProperties;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;

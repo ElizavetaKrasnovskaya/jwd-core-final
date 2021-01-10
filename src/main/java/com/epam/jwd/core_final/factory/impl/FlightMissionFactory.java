@@ -3,16 +3,16 @@ package com.epam.jwd.core_final.factory.impl;
 import com.epam.jwd.core_final.domain.FlightMission;
 import com.epam.jwd.core_final.factory.EntityFactory;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class FlightMissionFactory implements EntityFactory<FlightMission> {
 
-    private FlightMissionFactory(){}
+    private FlightMissionFactory() {
+    }
 
     private final static FlightMissionFactory INSTANCE = new FlightMissionFactory();
 
-    public static FlightMissionFactory getInstance(){
+    public static FlightMissionFactory getInstance() {
         return INSTANCE;
     }
 

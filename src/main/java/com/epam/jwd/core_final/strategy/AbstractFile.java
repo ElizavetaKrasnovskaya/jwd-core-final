@@ -12,7 +12,7 @@ public abstract class AbstractFile {
         this.path = path;
     }
 
-    public void read() throws IOException{
+    public void read() throws IOException {
         strategy.read(path);
     }
 }
