@@ -1,8 +1,11 @@
 package com.epam.jwd.core_final.service;
 
 import com.epam.jwd.core_final.criteria.Criteria;
+import com.epam.jwd.core_final.domain.CrewMember;
 import com.epam.jwd.core_final.domain.FlightMission;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +17,19 @@ public interface MissionService {
 
     Optional<FlightMission> findMissionByCriteria(Criteria<? extends FlightMission> criteria);
 
-    FlightMission updateSpaceshipDetails(FlightMission flightMission);
+    FlightMission updateMissionDetails(FlightMission oldFlightMission, FlightMission updatedFlightMission);
 
-    FlightMission createMission(FlightMission flightMission);
+    FlightMission createMission(String name, LocalDateTime startDate, LocalDateTime endDate, Long distance);
+
+    Double calculateMissionProgress(FlightMission flightMission);
+
+    void missionStatusUpdate (FlightMission mission);
+
+    void finishMission(FlightMission mission);
+
+    void printAllMissions();
+
+    FlightMission createTemporaryMission(LocalDate startDate, LocalDate endDate, Long distance);
+
+    List<FlightMission> getMissionsWithCrewMember(CrewMember crewMember);
 }
