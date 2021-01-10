@@ -19,6 +19,8 @@ public enum Role implements BaseEntity {
         return id;
     }
 
+
+
     /**
      * todo via java.lang.enum methods!
      */

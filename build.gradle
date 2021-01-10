@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+test {
+    systemProperties System.getProperties()
+}
+
 dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.0.1'
 
