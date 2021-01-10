@@ -23,23 +23,23 @@ public final class PropertyReaderUtil {
      * as a result - you should populate {@link ApplicationProperties} with corresponding
      * values from property file
      */
-    public static void loadProperties() {
-        final String propertiesFileName = "resource/application.properties";
-        try(InputStream inputStream = new FileInputStream(propertiesFileName)){
-            properties.load(inputStream);
+    public static ApplicationProperties loadProperties() {
+        final String propertiesFileName = "src/main/resources/application.properties";
+        try (InputStream iStream = new FileInputStream(propertiesFileName)) {
+            properties.load(iStream);
             ApplicationProperties applicationProperties = new ApplicationProperties(
-                properties.getProperty("inputRootDir"),
-                properties.getProperty("outputRootDir"),
-                properties.getProperty("crewFileName"),
-                properties.getProperty("missionsFileName"),
-                properties.getProperty("spaceshipsFileName"),
-                Integer.valueOf(properties.getProperty("fileRefreshRate")),
-                properties.getProperty("dateTimeFormat")
-                );
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+                    properties.getProperty("inputRootDir"),
+                    properties.getProperty("outputRootDir"),
+                    properties.getProperty("crewFileName"),
+                    properties.getProperty("missionsFileName"),
+                    properties.getProperty("spaceshipsFileName"),
+                    Integer.valueOf(properties.getProperty("fileRefreshRate")),
+                    properties.getProperty("dateTimeFormat")
+            );
+            return applicationProperties;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
