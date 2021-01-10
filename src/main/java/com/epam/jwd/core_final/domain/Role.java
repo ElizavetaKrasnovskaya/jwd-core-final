@@ -20,7 +20,6 @@ public enum Role implements BaseEntity {
     }
 
 
-
     /**
      * todo via java.lang.enum methods!
      */

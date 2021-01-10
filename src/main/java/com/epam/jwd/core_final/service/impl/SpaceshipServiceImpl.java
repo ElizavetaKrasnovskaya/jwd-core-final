@@ -102,11 +102,9 @@ public class SpaceshipServiceImpl implements SpaceshipService {
             flightDistance(mission.getDistance());
             isReadyForNextMissions(true);
         }}.build());
-
-//        if (spaceship.isEmpty()) {
-//            throw new FreeSpaceshipAbsentException("There is no spaceship which can complete mission");
-//        }
-
+        if (!spaceship.isPresent()) {
+            throw new FreeSpaceshipAbsentException("There is no spaceship which can complete mission");
+        }
         assignSpaceshipOnMission(mission, spaceship.get());
 
     }
@@ -117,10 +115,9 @@ public class SpaceshipServiceImpl implements SpaceshipService {
         Optional<Spaceship> spaceshipOptional = findSpaceshipByCriteria(new SpaceshipCriteria.Builder() {{
             name(name);
         }}.build());
-
-//        if (spaceshipOptional.isPresent()) {
-//            throw new EntityDuplicateException("Spaceship with given name already exists");
-//        }
+        if (spaceshipOptional.isPresent()) {
+            throw new EntityDuplicateException("Spaceship with given name already exists");
+        }
         Collection<Spaceship> spaceships = findAllSpaceships();
         spaceships.add(spaceship);
         return spaceship;

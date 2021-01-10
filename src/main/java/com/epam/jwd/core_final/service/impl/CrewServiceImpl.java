@@ -5,6 +5,7 @@ import com.epam.jwd.core_final.criteria.CrewMemberCriteria;
 import com.epam.jwd.core_final.criteria.Criteria;
 import com.epam.jwd.core_final.domain.*;
 import com.epam.jwd.core_final.exception.EntityDuplicateException;
+import com.epam.jwd.core_final.exception.FreeCrewMemberAbsentException;
 import com.epam.jwd.core_final.factory.impl.CrewMemberFactory;
 import com.epam.jwd.core_final.service.CrewService;
 
@@ -87,9 +88,9 @@ public class CrewServiceImpl implements CrewService {
                             role(value);
                             isReadyForNextMissions(true);
                         }}.build());
-//                if(crewMemberByCriteria.isEmpty()) {
-//                    throw new FreeCrewMemberAbsentException("There is no available crewmember for mission");
-//                }
+                if(!crewMemberByCriteria.isPresent()) {
+                    throw new FreeCrewMemberAbsentException("There is no available crewmember for mission");
+                }
                 crewMemberByCriteria.ifPresent(member -> {
                     member.setReadyForNextMissions(false);
                     mission.addCrew(member);
@@ -106,7 +107,7 @@ public class CrewServiceImpl implements CrewService {
             name(name);
         }}.build());
         if (crewMemberOptional.isPresent()) {
-
+            throw new EntityDuplicateException("Crew member with given name already exists");
         }
         Collection<CrewMember> crewMembers = NassaContext.getInstance().retrieveBaseEntityList(CrewMember.class);
         crewMembers.add(crewMember);
