@@ -31,6 +31,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -88,9 +89,19 @@ public interface ApplicationMenu {
             }
 
             missions.forEach(mission -> MissionServiceImpl.getInstance().missionStatusUpdate(mission));
-            System.out.println(printAvailableOptions());
-            choice = scanner.nextInt();
+            while (true) {
+                System.out.println(printAvailableOptions());
+                choice = -1;
+                try {
+                    choice = Integer.parseInt(scanner.next());
 
+                } catch (NumberFormatException ex) {
+                    logger.error("Invalid input");
+                }
+                if (choice >= 0 && choice < 5) {
+                    break;
+                }
+            }
             switch (choice) {
                 case 0:
                     logger.info("App was closed");
@@ -199,8 +210,19 @@ public interface ApplicationMenu {
 
     default void handleViewMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(printEntities());
-        int choice = scanner.nextInt();
+        int choice = -1;
+        while (true) {
+            System.out.println(printEntities());
+            try {
+                choice = Integer.parseInt(scanner.next());
+            } catch (NumberFormatException ex) {
+                logger.error("Invalid input");
+            }
+            if (choice >= 0 && choice < 4) {
+                break;
+            }
+        }
+
 
         switch (choice) {
             case 0:
@@ -229,10 +251,20 @@ public interface ApplicationMenu {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(applicationProperties.getDateTimeFormat());
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println(printEntities());
 
-        int choice = scanner.nextInt();
+        int choice = -1;
 
+        while (true) {
+            System.out.println(printEntities());
+            try {
+                choice = Integer.parseInt(scanner.next());
+            } catch (NumberFormatException ex) {
+                logger.error("Invalid input");
+            }
+            if (choice >= 0 && choice < 4) {
+                break;
+            }
+        }
         switch (choice) {
             case 0:
                 break;
@@ -404,8 +436,19 @@ public interface ApplicationMenu {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(printEntities());
-        int choice = scanner.nextInt();
+        int choice = -1;
+
+        while (true) {
+            System.out.println(printEntities());
+            try {
+                choice = Integer.parseInt(scanner.next());
+            } catch (NumberFormatException ex) {
+                logger.error("Invalid input");
+            }
+            if (choice >= 0 && choice < 4) {
+                break;
+            }
+        }
 
         String separator = FileSystems.getDefault().getSeparator();
 
