@@ -102,9 +102,6 @@ public class CrewServiceImpl implements CrewService {
     @Override
     public CrewMember createCrewMember(Role role, String name, Rank rank) throws RuntimeException, EntityDuplicateException {
         CrewMember crewMember = CrewMemberFactory.getInstance().create(role, name, rank);
-        Optional<CrewMember> crewMemberOptional = findCrewMemberByCriteria(new CrewMemberCriteria.Builder() {{
-            name(name);
-        }}.build());
         Collection<CrewMember> crewMembers = NassaContext.getInstance().retrieveBaseEntityList(CrewMember.class);
         crewMembers.add(crewMember);
         return crewMember;
