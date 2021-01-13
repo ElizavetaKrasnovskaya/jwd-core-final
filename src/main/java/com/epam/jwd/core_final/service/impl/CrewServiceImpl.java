@@ -106,9 +106,6 @@ public class CrewServiceImpl implements CrewService {
         Optional<CrewMember> crewMemberOptional = findCrewMemberByCriteria(new CrewMemberCriteria.Builder() {{
             name(name);
         }}.build());
-        if (crewMemberOptional.isPresent()) {
-            throw new EntityDuplicateException("Crew member with given name already exists");
-        }
         Collection<CrewMember> crewMembers = NassaContext.getInstance().retrieveBaseEntityList(CrewMember.class);
         crewMembers.add(crewMember);
         return crewMember;

@@ -115,9 +115,6 @@ public class SpaceshipServiceImpl implements SpaceshipService {
         Optional<Spaceship> spaceshipOptional = findSpaceshipByCriteria(new SpaceshipCriteria.Builder() {{
             name(name);
         }}.build());
-        if (spaceshipOptional.isPresent()) {
-            throw new EntityDuplicateException("Spaceship with given name already exists");
-        }
         Collection<Spaceship> spaceships = findAllSpaceships();
         spaceships.add(spaceship);
         return spaceship;
