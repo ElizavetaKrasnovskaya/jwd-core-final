@@ -59,7 +59,6 @@ public class CrewServiceImpl implements CrewService {
     @Override
     public CrewMember updateCrewMemberDetails(CrewMember oldCrewMember, CrewMember updatedCrewMember) {
 
-        //  oldCrewMember.setReadyForNextMissions(updatedCrewMember.getReadyForNextMissions());
         oldCrewMember.setRank(updatedCrewMember.getRank());
         oldCrewMember.setRole(updatedCrewMember.getRole());
 
